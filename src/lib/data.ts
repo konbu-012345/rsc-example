@@ -1,7 +1,13 @@
 export const fetchGreeting = async() => {
   const url = `http://10.0.36.252:3000/posts`;
-  const res = await fetch(url, { cache: "no-store"});
-  return (await res.json()) as {id: number, title: string, author: string}[];
+  try {
+    const res = await fetch(url, { cache: "no-store"});
+    return (await res.json()) as {id: number, title: string, author: string}[];
+  } catch(e) {
+    console.error(e)  
+    return [{id: 1, title: "request failed", author: "error"}];
+  }
+
 };
 
 /*
