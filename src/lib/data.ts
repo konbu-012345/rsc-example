@@ -1,6 +1,6 @@
 export const fetchGreeting = async() => {
   const url = `http://10.0.36.252:3000/posts`;
-  const res = await fetch(url);
+  const res = await fetch(url, { cache: "no-store"});
   return (await res.json()) as {id: number, title: string, author: string}[];
 };
 
