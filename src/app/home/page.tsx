@@ -1,11 +1,13 @@
 import { fetchGreeting } from "@/lib/data";
+import Link from "next/link";
 import { Suspense } from "react";
 
 export default async function Page() {
   const res = await fetchGreeting();
 
   return (
-    <div>
+    <div className="m-10">
+      <Link className="mb-5" href="/">Goto Root</Link>
       <Suspense fallback={<div key={0}>loading...</div>}>
         {res.map(data => (
           <div key={data.id}>
@@ -20,3 +22,5 @@ export default async function Page() {
     </div>  
   );
 }
+
+export const dynamic = 'force-dynamic';
